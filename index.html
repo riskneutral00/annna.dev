@@ -6,67 +6,270 @@
     <title>annnä — Approach Commitments.</title>
     <meta
       name="description"
-      content="annnä is an AI-operated commitment harness."
+      content="annnä brings your events, tasks, deadlines, and plans into one place — without the calendar clutter."
     />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='%23f6efe7' stroke='%23e5d8cb'%3E%3Ccircle cx='24' cy='34' r='14'/%3E%3Ccircle cx='40' cy='34' r='14'/%3E%3Ccircle cx='32' cy='26' r='14'/%3E%3Ccircle cx='32' cy='47' r='12'/%3E%3C/g%3E%3Cg fill='%23ffb5a7'%3E%3Ccircle cx='27' cy='17' r='4.5'/%3E%3Ccircle cx='32' cy='15' r='5'/%3E%3Ccircle cx='37' cy='17' r='4.5'/%3E%3C/g%3E%3Ccircle cx='26.5' cy='34' r='3.4' fill='%233c3231'/%3E%3Ccircle cx='37.5' cy='34' r='3.4' fill='%233c3231'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.16/dist/index.global.js"
+      integrity="sha384-CupcnpRPGKuEGGXTLCJOB/LtgZz1+ak44ldRJNT1XaLZdfrrG9MHDos5mKjLZx32"
+      crossorigin="anonymous"
+    ></script>
+    <style type="text/tailwindcss">
+      /* Tokens from the annnä repo's docs/DESIGN.md (token authority). */
+      @theme {
+        --font-nunito: "Nunito", sans-serif;
+        --color-ink: #3a322a;
+        --color-ink-2: #8a7d6f;
+        --color-accent: #c7621e;
+        --color-accent-deep: #a34f15;
+        --color-canvas-a: #fdf1e7;
+        --color-canvas-b: #f6e3d3;
+        --color-calm: #b5ead7;
+        --color-calm-ink: #2f6b57;
+        --color-attention: #ffdca8;
+        --color-attention-ink: #8a5a13;
+        --color-spine-sky: #5b8dc9;
+        --color-spine-rose: #c97ba4;
+        --radius-card: 12px;
+      }
+    </style>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
       body {
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        background: #fefcf7;
-        color: #2d2d2d;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        padding: 2rem;
+        background: linear-gradient(180deg, #fdf1e7, #f6e3d3);
       }
-      main {
-        text-align: center;
-        max-width: 32rem;
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid #c7621e;
+        outline-offset: 2px;
       }
-      h1 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        margin-bottom: 0.5rem;
-      }
-      p {
-        font-size: 1.125rem;
-        line-height: 1.6;
-        color: #5a5a5a;
-        margin-bottom: 2rem;
-      }
-      .tagline {
-        font-size: 0.875rem;
-        letter-spacing: 0.1em;
-        color: #b8a89a;
-        margin-bottom: 2rem;
-      }
-      hr {
-        border: none;
-        border-top: 1px solid #e8e0d6;
-        width: 4rem;
-        margin: 0 auto 2rem;
-      }
-      .footer {
-        font-size: 0.75rem;
-        color: #b8a89a;
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
       }
     </style>
   </head>
-  <body>
+  <body class="font-nunito text-ink min-h-screen">
+    <!-- Nav — sticky, solid white (ANNA-LANDING-SPEC §3.1) -->
+    <header class="sticky top-0 z-10 bg-white border-b border-black/5">
+      <nav
+        class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-3"
+        aria-label="Main"
+      >
+        <a href="#" class="flex shrink-0 items-center gap-2 font-extrabold text-lg">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 64 64"
+            role="img"
+            aria-label="annnä the alpaca"
+          >
+            <g fill="#f6efe7" stroke="#e5d8cb" stroke-width="1">
+              <circle cx="24" cy="34" r="14" />
+              <circle cx="40" cy="34" r="14" />
+              <circle cx="32" cy="26" r="14" />
+              <circle cx="22" cy="44" r="11" />
+              <circle cx="42" cy="44" r="11" />
+              <circle cx="32" cy="47" r="12" />
+            </g>
+            <ellipse cx="32" cy="36" rx="13" ry="14" fill="#fbf7f1" />
+            <g fill="#ffb5a7">
+              <circle cx="27" cy="17" r="4.5" />
+              <circle cx="32" cy="15" r="5" />
+              <circle cx="37" cy="17" r="4.5" />
+            </g>
+            <circle cx="26.5" cy="34" r="3.4" fill="#3c3231" />
+            <circle cx="37.5" cy="34" r="3.4" fill="#3c3231" />
+            <circle cx="27.6" cy="32.9" r="1.1" fill="#ffffff" />
+            <circle cx="38.6" cy="32.9" r="1.1" fill="#ffffff" />
+            <circle cx="22.5" cy="39.5" r="2.6" fill="#ffc9bd" opacity="0.8" />
+            <circle cx="41.5" cy="39.5" r="2.6" fill="#ffc9bd" opacity="0.8" />
+            <path
+              d="M30.4 41.2 Q32 42.6 33.6 41.2"
+              stroke="#8a6f66"
+              stroke-width="1.4"
+              fill="none"
+              stroke-linecap="round"
+            />
+            <ellipse cx="32" cy="39.4" rx="1.7" ry="1.2" fill="#c9a394" />
+          </svg>
+          annnä
+        </a>
+        <div class="flex items-center gap-3 sm:gap-5 text-sm font-bold">
+          <a href="#features" class="hover:text-accent transition-colors"
+            >Features</a
+          >
+          <a href="#about" class="hover:text-accent transition-colors">About</a>
+          <!-- App URL activates at v0.1.0 close (annna.ai → Clerk sign-in). -->
+          <a
+            href="https://annna.ai"
+            class="whitespace-nowrap rounded-full bg-accent px-4 sm:px-5 py-2 text-white hover:bg-accent-deep transition-colors"
+            >Open calendar</a
+          >
+        </div>
+      </nav>
+    </header>
+
     <main>
-      <p class="tagline">APPROäCH COMMITMENTS</p>
-      <h1>annnä</h1>
-      <hr />
-      <p>Building</p>
-      <p class="footer">&copy; 2026 annnä</p>
+      <!-- Hero (ANNA-LANDING-SPEC §3.2) -->
+      <section class="mx-auto max-w-3xl px-5 pt-24 pb-20 text-center">
+        <p class="text-sm font-bold tracking-[0.18em] text-ink-2 mb-6">
+          APPROäCH COMMITMENTS
+        </p>
+        <h1 class="text-5xl sm:text-6xl font-black leading-tight">
+          Approach Commitments.
+        </h1>
+        <p id="about" class="mt-6 text-lg leading-relaxed text-ink/70">
+          annnä brings your events, tasks, deadlines, and plans into one place
+          — without the calendar clutter. Tell it what you owe; you decide
+          what happens.
+        </p>
+        <a
+          href="https://annna.ai"
+          class="mt-10 inline-block rounded-full bg-accent px-9 py-4 text-lg font-extrabold text-white shadow-lg shadow-accent/25 hover:bg-accent-deep transition-colors"
+          >Open calendar</a
+        >
+      </section>
+
+      <!-- Feature highlights — 2×2 (ANNA-LANDING-SPEC §3.3) -->
+      <section
+        id="features"
+        class="mx-auto max-w-4xl px-5 pb-24 grid gap-5 sm:grid-cols-2"
+      >
+        <article class="rounded-card bg-white/70 border border-black/5 p-6">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            aria-hidden="true"
+            class="mb-3"
+          >
+            <rect x="3" y="4" width="13" height="8" rx="2.5" fill="#5B8DC9" />
+            <rect x="3" y="16" width="13" height="8" rx="2.5" fill="#B5EAD7" />
+            <circle cx="22.5" cy="20" r="3.5" fill="#FFDCA8" />
+          </svg>
+          <h2 class="font-extrabold text-lg">Events & Tasks, Separate</h2>
+          <p class="mt-1 text-sm leading-relaxed text-ink/70">
+            Events live on the grid. Tasks are due-day markers — never grid
+            blocks.
+          </p>
+        </article>
+        <article class="rounded-card bg-white/70 border border-black/5 p-6">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            aria-hidden="true"
+            class="mb-3"
+          >
+            <path
+              d="M14 3 C18 9 22 12 22 17 a8 8 0 1 1 -16 0 C6 12 10 9 14 3z"
+              fill="#FFB5A7"
+            />
+            <circle cx="14" cy="18" r="3" fill="#fff" />
+          </svg>
+          <h2 class="font-extrabold text-lg">Deadlines That Guide</h2>
+          <p class="mt-1 text-sm leading-relaxed text-ink/70">
+            Markers on the due day, not fake time blocks.
+          </p>
+        </article>
+        <article class="rounded-card bg-white/70 border border-black/5 p-6">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            aria-hidden="true"
+            class="mb-3"
+          >
+            <rect
+              x="4"
+              y="6"
+              width="20"
+              height="13"
+              rx="4"
+              fill="#C97BA4"
+              opacity="0.85"
+            />
+            <path d="M10 19 v4 l5 -4z" fill="#C97BA4" opacity="0.85" />
+            <circle cx="10.5" cy="12.5" r="1.6" fill="#fff" />
+            <circle cx="14.5" cy="12.5" r="1.6" fill="#fff" />
+            <circle cx="18.5" cy="12.5" r="1.6" fill="#fff" />
+          </svg>
+          <h2 class="font-extrabold text-lg">AI That Proposes</h2>
+          <p class="mt-1 text-sm leading-relaxed text-ink/70">
+            Plain language in, proposal card out. Nothing is created without
+            your confirm.
+          </p>
+        </article>
+        <article class="rounded-card bg-white/70 border border-black/5 p-6">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            aria-hidden="true"
+            class="mb-3"
+          >
+            <circle
+              cx="11"
+              cy="11"
+              r="6"
+              fill="none"
+              stroke="#C7621E"
+              stroke-width="3"
+            />
+            <path
+              d="M15.5 15.5 L23 23 M20 20 l3 -3"
+              stroke="#C7621E"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+          </svg>
+          <h2 class="font-extrabold text-lg">Invite-Only Alpha</h2>
+          <p class="mt-1 text-sm leading-relaxed text-ink/70">
+            Every account is opened by someone who knows the founder. Booking
+            links work for anyone — no account needed.
+          </p>
+        </article>
+      </section>
     </main>
+
+    <!-- Footer (ANNA-LANDING-SPEC §3.4) -->
+    <footer class="border-t border-black/5 bg-white/50">
+      <div
+        class="mx-auto max-w-5xl px-5 py-10 flex flex-col sm:flex-row gap-8 sm:items-start sm:justify-between"
+      >
+        <p class="font-extrabold text-lg">annnä</p>
+        <div class="flex gap-16 text-sm">
+          <nav aria-label="Primary">
+            <p class="font-bold tracking-widest text-xs text-ink-2 mb-2">
+              PRIMARY
+            </p>
+            <ul class="space-y-1">
+              <li><a href="#" class="hover:text-accent">Home</a></li>
+              <li><a href="#features" class="hover:text-accent">Features</a></li>
+              <li><a href="#about" class="hover:text-accent">About</a></li>
+            </ul>
+          </nav>
+          <nav aria-label="Connect">
+            <p class="font-bold tracking-widest text-xs text-ink-2 mb-2">
+              CONNECT
+            </p>
+            <ul class="space-y-1 text-ink/50">
+              <li>Soon</li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <p class="pb-8 text-center text-xs text-ink-2">© 2026 annnä</p>
+    </footer>
   </body>
 </html>
