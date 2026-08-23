@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>annnä — Privacy</title>
+    <meta
+      name="description"
+      content="What annnä holds, why it holds it, and what never happens to it."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='%23f6efe7' stroke='%23e5d8cb'%3E%3Ccircle cx='24' cy='34' r='14'/%3E%3Ccircle cx='40' cy='34' r='14'/%3E%3Ccircle cx='32' cy='26' r='14'/%3E%3Ccircle cx='32' cy='47' r='12'/%3E%3C/g%3E%3Cg fill='%23ffb5a7'%3E%3Ccircle cx='27' cy='17' r='4.5'/%3E%3Ccircle cx='32' cy='15' r='5'/%3E%3Ccircle cx='37' cy='17' r='4.5'/%3E%3C/g%3E%3Ccircle cx='26.5' cy='34' r='3.4' fill='%233c3231'/%3E%3Ccircle cx='37.5' cy='34' r='3.4' fill='%233c3231'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.16/dist/index.global.js"
+      integrity="sha384-CupcnpRPGKuEGGXTLCJOB/LtgZz1+ak44ldRJNT1XaLZdfrrG9MHDos5mKjLZx32"
+      crossorigin="anonymous"
+    ></script>
+    <style type="text/tailwindcss">
+      /* Tokens from the annnä repo's docs/DESIGN.md (token authority). */
+      @theme {
+        --font-nunito: "Nunito", sans-serif;
+        --color-ink: #3a322a;
+        --color-ink-2: #8a7d6f;
+        --color-accent: #c7621e;
+        --color-accent-deep: #a34f15;
+        --color-canvas-a: #fdf1e7;
+        --color-canvas-b: #f6e3d3;
+        --radius-card: 12px;
+      }
+    </style>
+    <style>
+      body {
+        background: linear-gradient(180deg, #fdf1e7, #f6e3d3);
+      }
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid #c7621e;
+        outline-offset: 2px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="font-nunito text-ink min-h-screen">
+    <header class="sticky top-0 z-10 bg-white border-b border-black/5">
+      <nav
+        class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-3"
+        aria-label="Main"
+      >
+        <a href="/" class="flex shrink-0 items-center gap-2 font-extrabold text-lg">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 64 64"
+            role="img"
+            aria-label="annnä the alpaca"
+          >
+            <g fill="#f6efe7" stroke="#e5d8cb" stroke-width="1">
+              <circle cx="24" cy="34" r="14" />
+              <circle cx="40" cy="34" r="14" />
+              <circle cx="32" cy="26" r="14" />
+              <circle cx="22" cy="44" r="11" />
+              <circle cx="42" cy="44" r="11" />
+              <circle cx="32" cy="47" r="12" />
+            </g>
+            <ellipse cx="32" cy="36" rx="13" ry="14" fill="#fbf7f1" />
+            <g fill="#ffb5a7">
+              <circle cx="27" cy="17" r="4.5" />
+              <circle cx="32" cy="15" r="5" />
+              <circle cx="37" cy="17" r="4.5" />
+            </g>
+            <circle cx="26.5" cy="34" r="3.4" fill="#3c3231" />
+            <circle cx="37.5" cy="34" r="3.4" fill="#3c3231" />
+            <circle cx="27.6" cy="32.9" r="1.1" fill="#ffffff" />
+            <circle cx="38.6" cy="32.9" r="1.1" fill="#ffffff" />
+            <circle cx="22.5" cy="39.5" r="2.6" fill="#ffc9bd" opacity="0.8" />
+            <circle cx="41.5" cy="39.5" r="2.6" fill="#ffc9bd" opacity="0.8" />
+            <path
+              d="M30.4 41.2 Q32 42.6 33.6 41.2"
+              stroke="#8a6f66"
+              stroke-width="1.4"
+              fill="none"
+              stroke-linecap="round"
+            />
+            <ellipse cx="32" cy="39.4" rx="1.7" ry="1.2" fill="#c9a394" />
+          </svg>
+          annnä
+        </a>
+        <div class="flex items-center gap-3 sm:gap-5 text-sm font-bold">
+          <a href="/#features" class="hover:text-accent transition-colors"
+            >Features</a
+          >
+          <a href="/#about" class="hover:text-accent transition-colors">About</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="mx-auto max-w-2xl px-5 pt-16 pb-24">
+      <h1 class="text-4xl font-black leading-tight">Privacy</h1>
+      <p class="mt-3 text-ink-2 text-sm font-bold">Effective 22 August 2026</p>
+      <p class="mt-6 leading-relaxed text-ink/80">
+        This page says what annnä holds, why it holds it, and what never
+        happens to it.
+      </p>
+
+      <section class="mt-12">
+        <h2 class="text-xl font-extrabold">What annnä holds</h2>
+        <p class="mt-3 leading-relaxed text-ink/80">
+          Your account: an email address and sign-in credentials. Your board:
+          the commitments you record — events, tasks, the rules you set over
+          them — and the history of what happened to each. This is the working
+          material of your own schedule, and it is held to run your board.
+          Nothing more is collected than what the schedule needs.
+        </p>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-xl font-extrabold">People who book with you</h2>
+        <p class="mt-3 leading-relaxed text-ink/80">
+          Someone booking your time uses a link and a plain form. They never
+          make an account. The link shows open time only — never what fills
+          your day, and never why a slot is closed. What they submit on the
+          form — a name, a contact address, an answer the booking needs —
+          lands on your board, attributed to their own link, visible to you
+          and to them. One person's link never shows them another person's
+          booking.
+        </p>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-xl font-extrabold">Connected calendars</h2>
+        <p class="mt-3 leading-relaxed text-ink/80">
+          You can connect a Google Calendar so existing plans appear beside
+          new ones. The connection is read-only: annnä asks Google for
+          permission to read your calendar (the
+          <code class="text-sm bg-white/70 rounded px-1">calendar.readonly</code>
+          scope) and nothing more. It cannot write to your calendar. There is
+          no background sync — your calendar is read only when you ask annnä
+          to bring updates in, and each item arrives as a proposal you
+          confirm or discard. Nothing imports itself.
+        </p>
+        <p class="mt-3 leading-relaxed text-ink/80">
+          The connection credential is stored encrypted, used for these reads
+          and nothing else, and revocable from either side at any time — in
+          annnä, or from your Google account's own settings.
+        </p>
+        <p class="mt-3 leading-relaxed text-ink/80">
+          annnä's use and transfer to any other app of information received
+          from Google APIs will adhere to the
+          <a
+            class="text-accent underline hover:text-accent-deep"
+            href="https://developers.google.com/terms/api-services-user-data-policy"
+            >Google API Services User Data Policy</a
+          >, including the Limited Use requirements. In plain terms: your
+          calendar data is read to show you your own schedule, and for nothing
+          else. It is not used for advertising, not sold, not passed to
+          anyone except the hosting that runs the product for you, and not
+          used to train AI models.
+        </p>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-xl font-extrabold">Documents</h2>
+        <p class="mt-3 leading-relaxed text-ink/80">
+          Some bookings need a document — a signed form, an ID page. Documents
+          live in a separate vault, encrypted, apart from the schedule. When a
+          document has served its purpose it is destroyed on a stated clock;
+          what remains is the fact that it was checked — a receipt, not a
+          copy. The most sensitive classes are held under their own keys, and
+          every read of them is logged.
+        </p>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-xl font-extrabold">The AI, plainly</h2>
+        <p class="mt-3 leading-relaxed text-ink/80">
+          annnä uses a language model to understand what you type. The model
+          proposes; it cannot commit anything, contact anyone, or author a
+          number on its own. Text written by anyone who is not you — a
+          booking note, an imported calendar entry — is read in isolation and
+          reaches the model's working context only as a structured summary.
+          Nothing you store is used to train models.
+        </p>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-xl font-extrabold">What never happens</h2>
+        <ul class="mt-3 space-y-2 leading-relaxed text-ink/80 list-disc pl-5">
+          <li>Your data is not sold, and there are no ads.</li>
+          <li>Nothing you store trains an AI model.</li>
+          <li>
+            Nothing reaches another person without your explicit yes, and
+            every outward act is recorded with who allowed it and when.
+          </li>
+          <li>
+            Time that opens up on your board is yours. It is never re-listed
+            behind your back.
+          </li>
+        </ul>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-xl font-extrabold">Your controls</h2>
+        <p class="mt-3 leading-relaxed text-ink/80">
+          You can export your whole board — commitments, rules, history — in
+          one piece. You can delete your account: the export is offered first,
+          then everything is erased on a stated schedule, and the erasure
+          produces a written confirmation. Any link you have shared can be
+          revoked, and a revoked link goes dark honestly — no stale view, no
+          leftover data behind it.
+        </p>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-xl font-extrabold">The alpha, honestly</h2>
+        <p class="mt-3 leading-relaxed text-ink/80">
+          annnä is in an invite-only alpha. This policy describes the product
+          as it is built; where a capability described here has not reached
+          you yet, the policy binds it from the day it does. Changes land on
+          this page with a new effective date.
+        </p>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-xl font-extrabold">Contact</h2>
+        <p class="mt-3 leading-relaxed text-ink/80">
+          Questions about this policy or your data:
+          <a
+            class="text-accent underline hover:text-accent-deep"
+            href="mailto:privacy@annna.dev"
+            >privacy@annna.dev</a
+          >.
+        </p>
+      </section>
+    </main>
+
+    <footer class="border-t border-black/5 bg-white/50">
+      <div
+        class="mx-auto max-w-5xl px-5 py-10 flex flex-col sm:flex-row gap-8 sm:items-start sm:justify-between"
+      >
+        <p class="font-extrabold text-lg">annnä</p>
+        <div class="flex gap-16 text-sm">
+          <nav aria-label="Primary">
+            <p class="font-bold tracking-widest text-xs text-ink-2 mb-2">
+              PRIMARY
+            </p>
+            <ul class="space-y-1">
+              <li><a href="/" class="hover:text-accent">Home</a></li>
+              <li><a href="/#features" class="hover:text-accent">Features</a></li>
+              <li><a href="/#about" class="hover:text-accent">About</a></li>
+              <li><a href="/privacy/" class="hover:text-accent">Privacy</a></li>
+            </ul>
+          </nav>
+          <nav aria-label="Connect">
+            <p class="font-bold tracking-widest text-xs text-ink-2 mb-2">
+              CONNECT
+            </p>
+            <ul class="space-y-1 text-ink/50">
+              <li>Soon</li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <p class="pb-8 text-center text-xs text-ink-2">© 2026 annnä</p>
+    </footer>
+  </body>
+</html>
