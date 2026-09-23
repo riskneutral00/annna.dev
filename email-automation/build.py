@@ -4,7 +4,7 @@ import re
 base=Path(__file__).resolve().parent
 source=(base/'information.md').read_text()
 def inline(text):
-    return re.sub(r'https://[^\s]+', lambda m:'<a href="'+m[0]+'">'+m[0]+'</a>',escape(text))
+    return re.sub(r'https://[^\s,]+', lambda m:'<a href="'+m[0]+'">'+m[0]+'</a>',escape(text))
 parts=[]
 for block in source.strip().split('\n\n'):
     if block.startswith('# '): parts.append('<h1>'+escape(block[2:])+'</h1>')
