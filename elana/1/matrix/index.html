@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Matrix · Elana · 4 November</title><link rel="stylesheet" href="/shared/student.css"></head><body class="matrix">
+<header class="top"><div class="in">
+<nav class="nav" aria-label="Pages"><a class="tab" href="../">Lesson</a><a class="tab on" href="../matrix/">Matrix</a><select id="session" aria-label="Session" hidden></select></nav>
+<div class="player"><button class="pp" id="pp" aria-label="Play">▶</button><button class="ctl" data-skip="-5" aria-label="Back 5 seconds">−5s</button><button class="ctl" data-skip="5" aria-label="Forward 5 seconds">+5s</button><button class="ctl" id="rate" aria-label="Playback speed">1×</button><div class="seek"><input type="range" id="seek" min="0" max="1000" value="0" aria-label="Seek"><span class="clock" id="clock">0:00</span></div><input class="vol" type="range" id="vol" min="0" max="1" step="0.05" value="1" aria-label="Volume"></div>
+</div></header>
+
+<main>
+<div class="tools"><details><summary>Columns</summary><div class="cols" id="cols"></div></details><label class="follow"><input type="checkbox" id="follow" checked> Follow playback</label></div>
+<div class="grid" id="grid"><p class="note" id="note">Loading…</p></div>
+</main>
+<style id="hide"></style>
+<script src="/shared/student.js"></script>
+<script>
+const P = setupPage('../');
+fetch('data.json').then(r => { if (!r.ok) throw Error('missing'); return r.json(); }).then(D => {
+  const names = [`${D.tutor} (typed)`, ...D.columns.map(c => c.name + (c.variant ? ' · ' + c.variant : ''))];
+  const table = el('table'), head = el('tr'), body = el('tbody');
+  head.append(el('th', null, 'Time'));
+  const typed = el('th', null, names[0]); typed.append(el('small', null, 'reference')); head.append(typed);
+  D.columns.forEach((c, i) => { const th = el('th', null, names[i + 1]); th.append(el('small', null, [c.score, c.cost].filter(Boolean).join(' · '))); head.append(th); });
+  const thead = el('thead'); thead.append(head); table.append(thead, body);
+  const rows = [], times = [];
+  const role = who => who === D.student ? 'student' : 'tutor';
+  for (const [t, who, matt, ...cells] of D.lines) {
+    const tr = el('tr'), first = el('td', role(who)), at = el('button', 'at', clock(t));
+    at.onclick = () => P.at(t); first.append(at, el('span', 'who', who));
+    tr.append(first, el('td', 'typed', matt), ...cells.map(x => el('td', null, x)));
+    body.append(tr); rows.push(tr); times.push(t);
+  }
+  $('grid').replaceChildren(table);
+  const hidden = new Set(JSON.parse(localStorage.getItem('student-matrix-hidden') || '[]'));
+  const filled = D.lines.map(([, , ...texts]) => texts.map((x, i) => x ? i : -1).filter(i => i >= 0));
+  const apply = () => {
+    $('hide').textContent = [...hidden].map(i => `#grid tr>*:nth-child(${i + 2}){display:none}`).join('');
+    rows.forEach((tr, r) => { tr.hidden = !filled[r].some(i => !hidden.has(i)); });
+    localStorage.setItem('student-matrix-hidden', JSON.stringify([...hidden]));
+  };
+  names.forEach((n, i) => {
+    const l = el('label'), box = el('input'); box.type = 'checkbox'; box.checked = !hidden.has(i);
+    box.onchange = () => { box.checked ? hidden.delete(i) : hidden.add(i); apply(); };
+    l.append(box, el('span', null, n)); if (i) l.append(el('small', null, D.columns[i - 1].score)); $('cols').append(l);
+  });
+  apply();
+  let playing = -1;
+  P.onTime(t => {
+    const i = lastAtOrBefore(times, t + 0.05); if (i === playing) return;
+    rows[playing]?.classList.remove('playing'); rows[i]?.classList.add('playing'); playing = i;
+    if ($('follow').checked && rows[i] && !rows[i].hidden) { const g = $('grid'), r = rows[i]; g.scrollTo({ top: r.offsetTop - g.clientHeight / 3, behavior: 'smooth' }); }
+  });
+}).catch(() => { $('note').textContent = 'The matrix for this lesson is being prepared.'; document.querySelector('.tools').classList.add('hidden'); });
+</script></body></html>
