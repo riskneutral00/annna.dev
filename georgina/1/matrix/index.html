@@ -36,7 +36,10 @@ fetch('data.json').then(r => { if (!r.ok) throw Error('missing'); return r.json(
     rows.forEach((tr, r) => { tr.hidden = !filled[r].some(i => !hidden.has(i)); });
     localStorage.setItem('student-matrix-hidden', JSON.stringify([...hidden]));
   };
+  const typed = D.lines.some(l => l[2]);
+  if (!typed) hidden.add(0);
   names.forEach((n, i) => {
+    if (i === 0 && !typed) return;
     const l = el('label'), box = el('input'); box.type = 'checkbox'; box.checked = !hidden.has(i);
     box.onchange = () => { box.checked ? hidden.delete(i) : hidden.add(i); apply(); };
     l.append(box, el('span', null, n)); if (i) l.append(el('small', null, D.columns[i - 1].score)); $('cols').append(l);
